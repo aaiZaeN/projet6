@@ -6,10 +6,11 @@ const Sauce = require("../models/Sauce");
 
 //Création d'une sauce
 exports.create = (req, res, next) => {
-  const sauceObjet = JSON.parse(req.body.sauce);
+  console.log("test", req.body.sauce)
+  console.log(req.protocol, req.file)
   const sauce = new Sauce({
-    ...sauceObjet,
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    ...req.body.sauce,
+   // imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   });
   sauce
     .save()
