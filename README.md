@@ -1,2 +1,0 @@
-# soPekocko.io
- 
