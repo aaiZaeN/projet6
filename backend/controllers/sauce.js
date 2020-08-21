@@ -1,4 +1,4 @@
-//Package file system pour modifier le système de donnée pour la foncion delete
+//Package file system pour modifier le système de donnée pour la fonction delete
 const fs = require('fs');
 
 //Import du modele de la sauce
@@ -94,9 +94,6 @@ exports.delete = (req, res, next) => {
 //Like sauce
 exports.likeSauce = (req, res, next) => {
   switch (req.body.like) {
-    //cancel = 0
-    //check if the user had liked or disliked the sauce
-    //uptade the sauce, send message/error
     case 0:
       Sauce.findOne({ _id: req.params.id })
         .then((sauce) => {
@@ -121,8 +118,6 @@ exports.likeSauce = (req, res, next) => {
         })
         .catch((error) => { res.status(404).json({ error: error }); });
       break;
-    //likes = 1
-    //uptade the sauce, send message/error
     case 1:
       Sauce.updateOne({ _id: req.params.id }, {
         $inc: { likes: 1 },
@@ -132,8 +127,6 @@ exports.likeSauce = (req, res, next) => {
         .then(() => { res.status(201).json({ message: 'Ton like a été pris en compte!' }); })
         .catch((error) => { res.status(400).json({ error: error }); });
       break;
-    //likes = -1
-    //uptade the sauce, send message/error
     case -1:
       Sauce.updateOne({ _id: req.params.id }, {
         $inc: { dislikes: 1 },
